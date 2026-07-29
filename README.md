@@ -94,8 +94,7 @@ server.close()
 
 ## Output :
 
-![Uploading Screenshot 2026-07-29 112734.png…]()
-
+<img width="1916" height="1026" alt="Screenshot 2026-07-29 112734" src="https://github.com/user-attachments/assets/418facf9-f57f-4224-a4d6-a51168bb11ee" />
 
 
 ## Result:
