@@ -58,32 +58,43 @@ Socket programming finds applications in various domains, including web developm
  ## Client.py
 ~~~
 import socket
-from datetime import datetime
-s=socket.socket()
-s.bind(('localhost',8000))
-s.listen(5)
-c,addr=s.accept()
-print("Client Address : ",addr)
-now = datetime.now()
-c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
-ack=c.recv(1024).decode()
-if ack:
- print(ack)
-c.close()
+
+client = socket.socket()
+client.connect(("localhost", 12345))
+
+client.send("Hello Server".encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+client.close()
 ~~~
 
 ## server.py
 ~~~
 import socket
-s=socket.socket()
-s.connect(('localhost',8000))
-print(s.getsockname())
-print(s.recv(1024).decode())
-s.send("acknowledgement recived from the server".encode())
+
+server = socket.socket()
+server.bind(("localhost", 12345))
+server.listen(1)
+
+print("Server is waiting...")
+
+conn, addr = server.accept()
+print("Connected by:", addr)
+
+message = conn.recv(1024).decode()
+print("Client:", message)
+
+conn.send("Hello Client".encode())
+
+conn.close()
+server.close()
 ~~~
 
 ## Output :
-![ex 1a output](https://github.com/user-attachments/assets/6d98a9f0-cce1-4e13-af73-0620f267d551)
+
+https://chatgpt.com/backend-api/estuary/content?id=file_00000000fa6c81fa9097c93db44e5506&ts=495917&p=fs&cid=1&sig=206d45573955e0c9befd867d05674bf1f2447c36ae7590a31592e963a47fa21b&v=0
 
 
 ## Result:
